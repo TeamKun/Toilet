@@ -1,0 +1,18 @@
+name: Toilet
+version: ${project.version}
+main: net.kunmc.lab.toilet.Toilet
+api-version: 1.16
+
+commands:
+  toilet:
+    description: Toilet Plugin config
+    permission: op
+    usage: |-
+      /toilet on
+      /toilet off
+      /toilet setWorld <x,y,z,int 半径>
+      /toilet ponponTime <int>
+      /toilet maxNonPonponTime <int>
+      /toilet toiletNum <int>
+      /toilet respawnTime <int>
+      /toilet displayBar <boolean>
