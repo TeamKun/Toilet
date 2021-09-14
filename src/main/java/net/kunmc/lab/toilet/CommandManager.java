@@ -12,12 +12,6 @@ import java.util.stream.Stream;
 
 public class CommandManager implements CommandExecutor, TabCompleter {
 
-    static float x=0,y=0,z=0,radius=30;
-    static int ponponTime = 30,maxNonPonponTime = 150;
-    static int respawnTime = 0;
-    static int toiletNum = 10;
-    static boolean displayBar = false;
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length <= 0) {

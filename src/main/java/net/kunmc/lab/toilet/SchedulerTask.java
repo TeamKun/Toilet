@@ -15,8 +15,8 @@ public class SchedulerTask extends BukkitRunnable {
 
         for (Player key : Toilet.qM.keySet()) {
             if(key.getGameMode() == GameMode.SPECTATOR) continue;
-            if(!Toilet.qM.get(key).living) continue;
-            Toilet.qM.get(key).count--;
+            if(!Toilet.qM.get(key).isLiving()) continue;
+            Toilet.qM.get(key).reduceCount();
             Toilet.qM.get(key).play();
         }
     }

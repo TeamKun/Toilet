@@ -18,8 +18,7 @@ public final class Toilet extends JavaPlugin implements Listener{
     static Toilet plugin = new Toilet();
     boolean running = false;
 
-
-    /*初期設定*/@Override
+    @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(plugin, plugin);
         this.getCommand("toilet").setExecutor(new CommandManager());
@@ -38,14 +37,12 @@ public final class Toilet extends JavaPlugin implements Listener{
         this.timer();
     }
 
-
     /*終了時処理*/
     public void stop(){
         running = false;
     }
 
-
-    /*タイマースタート*/
+    /*タイマー生成*/
     public void timer(){
         new SchedulerTask().runTaskTimer(plugin,0L,20L);
     }
@@ -55,7 +52,7 @@ public final class Toilet extends JavaPlugin implements Listener{
     @EventHandler
     public static void onDeath(PlayerDeathEvent e) {
         Player p = e.getEntity();
-        if(!qM.get(p).living) {    //うんちを漏らした以外の理由で死んだ場合のための回避
+        if(!qM.get(p).isLiving()) {    //うんちを漏らした以外の理由で死んだ場合のための回避
             Component message = LinearComponents.linear(text(p.getName() + "はうんちを漏らした!恥ずかしくて生きていけない!"));
             e.deathMessage(message);
             //qM.get(p).living = true; //要検討

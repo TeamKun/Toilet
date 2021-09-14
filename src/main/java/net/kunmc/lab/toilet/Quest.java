@@ -6,24 +6,20 @@ public class Quest {
 
     /*プレイヤー個人のクエスト管理を行うインスタンス*/
 
-    Player player;
-    int nonPonponTime;
-    int count;
-    boolean living;
+    private Player player;
+    private int nonPonponTime;
+    private int count;
+    private boolean living;
+
 
     public Quest(Player p){
         player = p;
-        setTime();
+        resetCount();
         living = true;  //生死判定
     }
 
-    private void setTime(){
-        nonPonponTime = new java.util.Random().nextInt(CommandManager.maxNonPonponTime);
-        count = nonPonponTime+CommandManager.ponponTime;
-    }
-
     public void play(){
-        if(count == 0){
+        if(count <= 0){
             this.dead();
         }
     }
@@ -31,9 +27,23 @@ public class Quest {
     public void dead(){
         this.living = false;
         this.player.setHealth(0);
-        this.setTime();
+        this.resetCount();
     }
 
+    private void resetCount(){
+        nonPonponTime = new java.util.Random().nextInt(net.kunmc.lab.toilet.Config.getMaxNonPonponTime());
+        count = nonPonponTime+ net.kunmc.lab.toilet.Config.getPonponTime();
+    }
 
+    public void reduceCount(){
+        this.count--;
+    }
 
+    public int getCount() {
+        return count;
+    }
+
+    public boolean isLiving(){
+        return living;
+    }
 }
